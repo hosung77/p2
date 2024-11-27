@@ -1,0 +1,81 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.14'  // Spring Boot 2.7.x로 변경
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.github'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // Spring Boot Starter Security (Spring Security 5.x)
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.7.9'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Web and other necessary starters
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // Session management
+    implementation 'org.springframework.session:spring-session-core'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Database connectors
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.26'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
+
+    // Testing dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Data and JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // JWT
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    // Swagger for API documentation
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+
+
+    // Servlet API
+    implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+
+    // Spring Boot Configuration Processor
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+

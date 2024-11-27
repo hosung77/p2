@@ -1,0 +1,13 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+logging:
+  config: classpath:logback-spring-prod.xml
+
+datasource:
+  username: ${DATABASE_USERNAME}
+  password: ${DATABASE_PASSWORD}
+  driver-class-name: org.mariadb.jdbc.Driver
+  url: jdbc:mariadb://database-1.c5weow084e6r.ap-northeast-2.rds.amazonaws.com:3306/login?useUnicode=true&characterEncoding=UTF-8
+
